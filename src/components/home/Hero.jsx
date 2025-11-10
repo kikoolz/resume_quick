@@ -21,7 +21,7 @@ const Hero = () => {
             <img
               src="/logo.png"
               alt="resume-quick-logo"
-              className="flex justify-center items-center h-auto w-56 object-contain"
+              className="flex justify-center items-center h-auto w-25 object-contain"
             />
           </a>
 
