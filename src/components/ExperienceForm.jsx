@@ -57,7 +57,10 @@ const ExperienceForm = ({ data, onChange }) => {
             >
               <div className="flex justify-between items-start">
                 <h4>Experience # {index + 1}</h4>
-                <button className="text-red-500 hover:text-red-700 transition-colors">
+                <button
+                  onClick={() => removeExperience(index)}
+                  className="text-red-500 hover:text-red-700 transition-colors"
+                >
                   <Trash2 className="size-4" />
                 </button>
               </div>
@@ -69,7 +72,7 @@ const ExperienceForm = ({ data, onChange }) => {
                   }
                   type="text"
                   placeholder="Company Name"
-                  className="px-3 py-2 text-sm rounded-lg"
+                  className="px-3 py-2 text-sm rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-200"
                 />
                 <input
                   value={experience.position || ""}
@@ -78,7 +81,7 @@ const ExperienceForm = ({ data, onChange }) => {
                   }
                   type="text"
                   placeholder="Job Title"
-                  className="px-3 py-2 text-sm rounded-lg"
+                  className="px-3 py-2 text-sm rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-200"
                 />
                 <input
                   value={experience.start_date || ""}
@@ -86,7 +89,7 @@ const ExperienceForm = ({ data, onChange }) => {
                     updateExperience(index, "start_date", e.target.value)
                   }
                   type="month"
-                  className="px-3 py-2 text-sm rounded-lg"
+                  className="px-3 py-2 text-sm rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-200"
                 />
                 <input
                   value={experience.end_date || ""}
@@ -95,8 +98,7 @@ const ExperienceForm = ({ data, onChange }) => {
                   }
                   type="month"
                   disabled={experience.is_current}
-                  className="px-3 py-2 text-sm rounded-lg 
-                  disabled:bg-gray-100"
+                  className="px-3 py-2 text-sm rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-200 disabled:bg-gray-100"
                 />
               </div>
               <label>
@@ -132,7 +134,7 @@ const ExperienceForm = ({ data, onChange }) => {
                     updateExperience(index, "description", e.target.value)
                   }
                   rows={4}
-                  className="w-full text-sm px-3 py-2 rounded-lg resize-none"
+                  className="w-full text-sm px-3 py-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-blue-200 resize-none"
                   placeholder="Describe your key responsibilities and achievements..."
                 />
               </div>

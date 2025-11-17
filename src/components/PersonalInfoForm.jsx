@@ -89,7 +89,7 @@ const PersonalInfoForm = ({
                 onChange={() => setRemoveBackground((prev) => !prev)}
                 checked={removeBackground}
               />
-              <div className="w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-red-600 transition-colors duration-200"></div>
+              <div className="w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200"></div>
               <span className="dot absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4"></span>
             </label>
           </div>
@@ -111,7 +111,7 @@ const PersonalInfoForm = ({
               type={field.type}
               value={data[field.key] || ""}
               onChange={(e) => handleImageChange(field.key, e.target.value)}
-              className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-violet-300 focus:border-violet-300 outline-none transition-colors text-sm"
+              className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300 focus:border-blue-300 outline-none transition-colors text-sm"
               placeholder={`Enter your ${field.label.toLowerCase()}`}
               required={field.required}
             />
