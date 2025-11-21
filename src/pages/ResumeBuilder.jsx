@@ -7,9 +7,13 @@ import {
   Briefcase,
   ChevronLeft,
   ChevronRight,
+  Download,
+  EyeIcon,
+  EyeOffIcon,
   FileText,
   FolderIcon,
   GraduationCap,
+  Share2Icon,
   Sparkles,
   User,
 } from "lucide-react";
@@ -19,11 +23,14 @@ import TemplateSelector from "../components/TemplateSelector";
 import ColorPicker from "../components/ColorPicker";
 import ProfessionalSummary from "../components/ProfessionalSummary";
 import ExperienceForm from "../components/ExperienceForm";
-import EducationForm from "../components/EducationForm";
+import EducationForm from "../components/ExperienceForm";
 import ProjectForm from "../components/ProjectForm";
 import SkillsForm from "../components/SkillsForm";
+import ShareModal from "../components/ShareModal";
 
 const ResumeBuilder = () => {
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
   const { resumeId } = useParams();
 
   const [resumeData, setResumeData] = useState({
@@ -69,6 +76,34 @@ const ResumeBuilder = () => {
       document.title = "Create New Resume | Resume Quick";
     }
   }, [resumeId]);
+
+  const changeResumeVisibility = async () => {
+    setResumeData({ ...resumeData, public: !resumeData.public });
+  };
+
+  const handleShare = () => {
+    const frontendUrl = window.location.href.split("/app")[0];
+    const resumeUrl = `${frontendUrl}/view/${resumeId}`;
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (navigator.share && isMobile) {
+      navigator
+        .share({
+          title: "My Resume",
+          text: "Check out my resume!",
+          url: resumeUrl,
+        })
+        .catch(console.error);
+    } else {
+      setShareUrl(resumeUrl);
+      setIsShareOpen(true);
+    }
+  };
+
+  const downloadResume = () => {
+    window.print();
+  };
 
   return (
     <div>
@@ -233,7 +268,37 @@ const ResumeBuilder = () => {
 
           {/* Right Panel - Preview */}
           <div className="lg:col-span-7 max-lg:mt-6">
-            <div>{/* ----- buttons ----- */}</div>
+            <div className="relative w-full">
+              {/* ----- buttons ----- */}
+              <div className="absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2">
+                {resumeData.public && (
+                  <button
+                    onClick={handleShare}
+                    className="flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-blue-100 t0-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors"
+                  >
+                    <Share2Icon className="size-4" /> Share
+                  </button>
+                )}
+                <button
+                  onClick={changeResumeVisibility}
+                  className="flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-purple-100 t0-purple-200 text-purple-600 rounded-lg ring-purple-300 hover:ring transition-colors"
+                >
+                  {resumeData.public ? (
+                    <EyeIcon className="size-4" />
+                  ) : (
+                    <EyeOffIcon className="size-4" />
+                  )}
+                  {resumeData.public ? "Public" : "Private"}
+                </button>
+                <button
+                  onClick={downloadResume}
+                  className="flex items-center p-2 px-4 gap-2 text-xs bg-linear-to-br from-green-100 t0-green-200 text-green-600 rounded-lg ring-green-300 hover:ring transition-colors"
+                >
+                  <Download className="size-4" />
+                  Download
+                </button>
+              </div>
+            </div>
 
             {/* ----- resume preview ----- */}
             <ResumePreview
@@ -244,6 +309,12 @@ const ResumeBuilder = () => {
           </div>
         </div>
       </div>
+      <ShareModal
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+        url={shareUrl}
+        isPublic={resumeData.public}
+      />
     </div>
   );
 };
