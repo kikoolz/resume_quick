@@ -12,7 +12,7 @@ const CallToAction = () => {
         </p>
         <a
           href="https://prebuiltui.com"
-          className="flex items-center gap-2 rounded py-3 px-8 bg-red-600 hover:bg-red-700 transition text-white"
+          className="flex items-center gap-2 rounded py-3 px-8 bg-purple-600 hover:bg-purple-700 transition text-white"
         >
           <span>Get Started</span>
           <svg

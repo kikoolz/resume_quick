@@ -27,11 +27,15 @@ import EducationForm from "../components/ExperienceForm";
 import ProjectForm from "../components/ProjectForm";
 import SkillsForm from "../components/SkillsForm";
 import ShareModal from "../components/ShareModal";
+import { useSelector } from "react-redux";
+import api from "../configs/api";
 
 const ResumeBuilder = () => {
+  const { resumeId } = useParams();
+  const { token } = useSelector((state) => state.auth);
+
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
-  const { resumeId } = useParams();
 
   const [resumeData, setResumeData] = useState({
     _id: "",
@@ -48,10 +52,18 @@ const ResumeBuilder = () => {
   });
 
   const loadExistingResume = async (resumeId) => {
-    const resume = dummyResumeData.find((resume) => resume._id === resumeId);
-    if (resume) {
-      setResumeData(resume);
-      document.title = `Editing: ${resume.title} | Resume Quick`;
+    try {
+      const { data } = await api.get("/api/resumes/get" + resumeId, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      if (data.resume) {
+        setResumeData(data.resume);
+        document.title = data.resume.title;
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 

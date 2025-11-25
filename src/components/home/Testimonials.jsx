@@ -42,7 +42,7 @@ const Testimonials = () => {
           <div className="flex items-center gap-1">
             <p>{card.name}</p>
             <svg
-              className="mt-0.5 fill-red-500"
+              className="mt-0.5 fill-purple-500"
               width="12"
               height="12"
               viewBox="0 0 12 12"
@@ -70,7 +70,7 @@ const Testimonials = () => {
         id="testimonials"
         className="flex flex-col items-center my-10 scroll-mt-12"
       >
-        <div className="flex items-center gap-2 text-sm text-red-800 bg-red-400/10 rounded-full px-6 py-1.5">
+        <div className="flex items-center gap-2 text-sm text-purple-800 bg-purple-400/10 rounded-full px-6 py-1.5">
           <BookUserIcon width={14} />
           <span>Testimonials</span>
         </div>
