@@ -227,4 +227,4 @@ This project is licensed under the **MIT License**.
 
 ---
 
-🚀 **Build your resume in minutes — ResumeBuilder makes it easy!**
+🚀 **Build your resume in minutes — ResumeQuick makes it easy!**
