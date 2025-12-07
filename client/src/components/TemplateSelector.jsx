@@ -43,6 +43,144 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
       name: "Minimal",
       preview: "Ultra-clean design that puts your content front and center",
     },
+    {
+      id: "celestial",
+      name: "Celestial",
+      preview:
+        "Soft neutral tones with refined typography for a sophisticated and professional feel",
+    },
+    {
+      id: "galaxy",
+      name: "Galaxy",
+      preview:
+        "A visually striking resume template, perfect for illustrating the breadth and depth of your expertise",
+    },
+    {
+      id: "astral",
+      name: "Astral",
+      preview:
+        "Includes a prominent profile image for a personal touch while maintaining professionalism",
+    },
+    {
+      id: "eclipse",
+      name: "Eclipse",
+      preview:
+        "A mysterious and powerful CV template, emphasizing key accomplishments and milestones",
+    },
+    {
+      id: "astralis",
+      name: "Astralis",
+      preview:
+        "A modern and professional resume template with a clean and structured layout",
+    },
+    {
+      id: "orbit",
+      name: "Orbit",
+      preview:
+        "A dynamic, well-structured resume template, highlighting a balanced journey through your career milestones",
+    },
+    {
+      id: "comet",
+      name: "Comet",
+      preview:
+        "Vibrant resume template with a dynamic color scheme and eye-catching accents",
+    },
+    {
+      id: "solstice",
+      name: "Solstice",
+      preview:
+        "A unique, well-crafted resume template that reflects your individuality and expertise",
+    },
+    {
+      id: "pulsar",
+      name: "Pulsar",
+      preview:
+        "A bold and radiant resume template, perfect for professionals who aim to leave a lasting impact",
+    },
+    {
+      id: "quasar",
+      name: "Quasar",
+      preview:
+        "A cutting-edge resume template, ideal for tech-savvy professionals with a focus on innovation",
+    },
+    {
+      id: "nebular",
+      name: "Nebular",
+      preview:
+        "A contemporary, visually appealing resume template that enhances your personal brand",
+    },
+    {
+      id: "nova",
+      name: "Nova",
+      preview:
+        "A bold and impactful CV template, designed to highlight transformative career moments",
+    },
+    {
+      id: "aurora",
+      name: "Aurora",
+      preview:
+        "An energetic and eye-catching design, ideal for showcasing fast-paced career achievements",
+    },
+    {
+      id: "hyperion",
+      name: "Hyperion",
+      preview:
+        "Strong typography and structured sections create a confident and polished look",
+    },
+    {
+      id: "lunar",
+      name: "Lunar",
+      preview:
+        "A minimalist and elegant resume template, reflecting clarity and precision in your career path",
+    },
+    {
+      id: "stellar",
+      name: "Stellar",
+      preview:
+        "A sleek and polished CV template, emphasizing standout achievements and excellence",
+    },
+    {
+      id: "zenith",
+      name: "Zenith",
+      preview:
+        "A bold and minimalistic resume template, emphasizing clarity and impact",
+    },
+    {
+      id: "aether",
+      name: "Aether",
+      preview:
+        "A sharp and structured resume template that presents your expertise with professionalism",
+    },
+    {
+      id: "nebula",
+      name: "Nebula",
+      preview:
+        "A creative and expansive CV template, ideal for showcasing diverse skills and experiences",
+    },
+    {
+      id: "eon",
+      name: "Eon",
+      preview:
+        "A clean, easy-to-read resume template, making your qualifications the center of attention",
+    },
+    {
+      id: "cosmos",
+      name: "Cosmos",
+      preview:
+        "A comprehensive CV template that provides a broad overview of your professional universe",
+    },
+    {
+      id: "starburst",
+      name: "Starburst",
+      preview:
+        "A modern and professional resume template with a clean and structured layout",
+    },
+    {
+      id: "exoplanet",
+      name: "Exoplanet",
+      preview:
+        "A simple resume template with an organized structure and neat design",
+    },
   ];
 
   return (
@@ -55,7 +193,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
         <span className="max-sm:hidden">Template</span>
       </button>
       {isOpen && (
-        <div className="absolute top-full w-xs p-3 mt-2 space-y-3 bg-white rounded-md border border-gray-200 shadow-sm">
+        <div className="absolute top-full w-xs p-3 mt-2 space-y-3 bg-white rounded-md border border-gray-200 shadow-sm min-h-[200px] max-h-[380px] overflow-y-auto">
           {templates.map((template) => (
             <div
               key={template.id}

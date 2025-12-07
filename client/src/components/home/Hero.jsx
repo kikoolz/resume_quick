@@ -13,6 +13,34 @@ const Hero = () => {
     "https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg",
     "https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg",
   ];
+  const [logoSvgs, setLogoSvgs] = React.useState([]);
+
+  React.useEffect(() => {
+    let mounted = true;
+    const fetchSvgs = async () => {
+      try {
+        const svgs = await Promise.all(
+          logos.map(async (url) => {
+            try {
+              const res = await fetch(url);
+              const text = await res.text();
+              // Keep original SVGs intact (colorful logos)
+              return text;
+            } catch (e) {
+              return null;
+            }
+          })
+        );
+        if (mounted) setLogoSvgs(svgs);
+      } catch (e) {
+        // ignore
+      }
+    };
+    fetchSvgs();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <>
@@ -20,11 +48,7 @@ const Hero = () => {
         {/* Navbar */}
         <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
           <a href="/">
-            <img
-              src="/logo.png"
-              alt="resume-quick-logo"
-              className="flex justify-center items-center h-auto w-25 object-contain"
-            />
+            <h2 className="text-purple-700 font-semibold">RESUME-Q</h2>
           </a>
 
           <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
@@ -48,14 +72,14 @@ const Hero = () => {
           <div className="flex gap-2">
             <Link
               to="/app?state=register"
-              className="hidden md:block px-6 py-2 bg-purple-500 hover:bg-purple-700 active:scale-95 transition-all rounded-full text-white"
+              className="hidden md:block px-6 py-2 bg-purple-500 hover:bg-purple-700 active:scale-95 transition-all rounded-md text-white"
               hidden={user}
             >
               Get started
             </Link>
             <Link
               to="/app?state=login"
-              className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
+              className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-md text-slate-700 hover:text-slate-900"
               hidden={user}
             >
               Login
@@ -175,24 +199,81 @@ const Hero = () => {
           </div>
 
           {/* Headline + CTA */}
-          <h1 className="text-5xl md:text-6xl font-semibold max-w-5xl text-center mt-4 md:leading-[70px]">
-            We Help You Tell Your Story — and Turn It into a
-            <span className=" bg-linear-to-r from-purple-700 to-purple-600 bg-clip-text text-transparent text-nowrap">
+          <h1 className="text-4xl md:text-6xl font-semibold max-w-4xl text-center mt-4 leading-tight md:leading-tight">
+            Building stunning
+            <span className="relative bg-linear-to-r from-purple-700 to-[#764de1] bg-clip-text text-transparent">
               {" "}
-              Winning Resume.
-            </span>{" "}
+              resumes
+              <div className="z-10 absolute bottom-0 left-0 w-full">
+                <svg
+                  viewBox="0 0 274 10"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-full h-auto"
+                >
+                  <g clipPath="url(#clip0_7800_845)">
+                    <g clipPath="url(#clip1_7800_845)">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M270.35 8.05003C166.243 2.31162 49.189 6.91915 3.70057 9.93972C2.32357 10.0312 1.12538 9.11882 1.02434 7.90197C0.923295 6.68511 1.95766 5.62453 3.33467 5.53309C48.9581 2.50355 166.258 -2.11573 270.67 3.63956C272.049 3.71549 273.094 4.76438 273.006 5.98231C272.917 7.20022 271.729 8.12598 270.35 8.05003Z"
+                        fill="url(#paint0_linear_7800_845)"
+                      />
+                    </g>
+                  </g>
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_7800_845"
+                      x1="25.986"
+                      y1="8.76207"
+                      x2="210.015"
+                      y2="-91.3561"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#3D1DFF" />
+                      <stop offset="0.223953" stopColor="#6147FF" />
+                      <stop offset="0.46354" stopColor="#D451FF" />
+                      <stop offset="0.750004" stopColor="#EC458D" />
+                      <stop offset="1" stopColor="#FFCA8B" />
+                    </linearGradient>
+                    <clipPath id="clip0_7800_845">
+                      <rect
+                        width="272"
+                        height="8"
+                        fill="white"
+                        transform="translate(0.976562 1.96387) rotate(-0.405928)"
+                      />
+                    </clipPath>
+                    <clipPath id="clip1_7800_845">
+                      <rect
+                        width="272"
+                        height="8"
+                        fill="white"
+                        transform="translate(0.976562 1.96387) rotate(-0.405928)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </span>
+            <br />
+            that will land you interviews with
+            <span className="relative bg-linear-to-r from-purple-700 to-[#764de1] bg-clip-text text-transparent">
+              {" "}
+              Resume-Q.
+            </span>
           </h1>
 
           <p className="max-w-md text-center text-base my-7">
-            Explore a growing library of over 320+ beautifully crafted,
-            customizable components.
+            Create professional, impactful resumes in minutes—designed to help
+            you stand out.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-4 ">
             <Link
               to="/app"
-              className="bg-purple-500 hover:bg-purple-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-purple-400 flex items-center transition-colors"
+              className="bg-purple-500 hover:bg-purple-600 text-white rounded-md px-9 h-12 m-1 ring-offset-2 ring-1 ring-purple-400 flex items-center transition-colors"
             >
               Get started
               <svg
@@ -212,7 +293,7 @@ const Hero = () => {
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </Link>
-            <button className="flex items-center gap-2 border border-slate-400 hover:bg-purple-50 transition rounded-full px-7 h-12 text-slate-700">
+            <button className="flex items-center gap-2 border border-slate-400 hover:bg-purple-50 transition rounded-md px-7 h-12 text-slate-700">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -220,16 +301,15 @@ const Hero = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="1"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="lucide lucide-video size-5"
-                aria-hidden="true"
+                className="lucide lucide-file size-5"
               >
-                <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path>
-                <rect x="2" y="6" width="14" height="12" rx="2"></rect>
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
               </svg>
-              <span>Try demo</span>
+              <span>Templates</span>
             </button>
           </div>
 
@@ -241,14 +321,23 @@ const Hero = () => {
             className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4"
             id="logo-container"
           >
-            {logos.map((logo, index) => (
-              <img
-                key={index}
-                src={logo}
-                alt="logo"
-                className="h-6 w-auto max-w-xs"
-              />
-            ))}
+            {logos.map((logo, index) => {
+              const svg = logoSvgs && logoSvgs[index];
+              return svg ? (
+                <div
+                  key={index}
+                  className="h-6 w-auto max-w-xs"
+                  dangerouslySetInnerHTML={{ __html: svg }}
+                />
+              ) : (
+                <img
+                  key={index}
+                  src={logo}
+                  alt="logo"
+                  className="h-6 w-auto max-w-xs"
+                />
+              );
+            })}
           </div>
         </div>
       </div>

@@ -30,3 +30,7 @@ dist-ssr
 # Cursor editor
 .cursor/
 .cursor*
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

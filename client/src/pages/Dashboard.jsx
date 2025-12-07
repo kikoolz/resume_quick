@@ -141,7 +141,7 @@ const Dashboard = () => {
     <div>
       <div className="max-w-7xl mx-auto px-4 py-8">
         <p className="text-2xl font-medium mb-6 bg-linear-to-r from-slate-600 to-slate-700 text-transparent bg-clip-text sm:hidden">
-          Welcome, John Doe
+          Welcome, {user?.name}!
         </p>
 
         <div className="flex gap-4">
